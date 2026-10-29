@@ -65,6 +65,22 @@ class AppString {
   static const String loginCheckBoxText ="Don’t have an account?";
 
 
+  static const String taskTitle1 = "Design Landing Page Header";
+  static const String taskTitle2 = "Develop Onboarding Screens";
+  static const String taskTitle3 = "Organize Task Card Components";
+  static const String taskTitle4 = "Prepare Terms & Privacy Pages";
+  static const String taskTitle5 = "Build Calendar View Layout";
+
+  static const String taskDescription1 = "Create a clean, responsive header section with logo,\nnavigation links, and a clear call-to-action button.";
+  static const String taskDescription2 = "Design a 3-step onboarding flow to introduce users to core\n app features using illustrations and concise text.";
+  static const String taskDescription3 = "Build reusable task card UI elements for listing, prioritizing,\n and editing individual tasks.";
+  static const String taskDescription4 = "Create UI layouts for Terms & Conditions and Privacy Policy\n using scrollable content and soft brand styling.";
+  static const String taskDescription5 = "Design a visual calendar interface to display upcoming\n tasks and deadlines with status indicators.";
+
+ // ========== profile ==========//
+
+
+
 
 
 

@@ -23,6 +23,8 @@ class AppImageUrlString {
   static const String taskLogo = "assets/images/task_image/group.svg";
 
   static const String profile = "assets/images/profile/profile.png";
+  static const String profileShape = "assets/images/profile/profile_shape.png";
+  static const String profilee = "assets/images/profile/profilee.png";
 
 
 

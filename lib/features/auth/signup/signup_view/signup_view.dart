@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:task_04/features/auth/login/widget/check_box.dart';
+import 'package:task_04/features/auth/controller/signup_controller.dart';
 import 'package:task_04/features/auth/login/widget/custom_button.dart';
 import 'package:task_04/features/auth/login/widget/divider_widget.dart';
-import 'package:task_04/features/auth/login/widget/dont_have_account.dart';
 import 'package:task_04/features/auth/login/widget/login_widget.dart';
 import 'package:task_04/features/auth/signup/widget/already_account.dart';
 import 'package:task_04/features/auth/signup/widget/check_box.dart';
@@ -16,11 +16,13 @@ class SignupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenheight = MediaQuery.of(context).size.height;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final SignupController controller = Get.put(SignupController());
+
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(
+      value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarBrightness: Brightness.dark
+        statusBarBrightness: Brightness.dark,
       ),
       child: Scaffold(
         backgroundColor: AppColors.background,
@@ -30,62 +32,76 @@ class SignupView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: screenheight * 0.06),
-                Text(AppString.createTitle,style: GoogleFonts.poppins(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.title
-                ),),
-      
-                Text(AppString.createDescription,style: GoogleFonts.poppins(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w400,
-                  letterSpacing: 0.5,
-                  color: AppColors.description
-                ),),
-      
-                SizedBox(height: 20,),
-                
-                CustomTextField(label:AppString.firstname, hint: AppString.nameHint),
-                SizedBox(height: 20,),
-      
-                CustomTextField(label:AppString.lastName, hint: AppString.lastnameHint),
-                SizedBox(height: 20,),
-      
-                CustomTextField(label:AppString.email, hint: AppString.emailHint),
-                SizedBox(height: 20,),
-      
-                CustomTextField(label:AppString.address, hint: AppString.addressHint),
-      
-      
-                SizedBox(height: 20,),
-                CustomTextField(label:AppString.password, hint: AppString.passwordHint),
-      
-                SizedBox(height: 20,),
-                CustomTextField(label:AppString.confirmPassword, hint: AppString.passwordHint),
-      
-                SizedBox(height: 10,),
-      
+                SizedBox(height: screenHeight * 0.06),
+                Text(
+                  AppString.createTitle,
+                  style: GoogleFonts.poppins(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.title,
+                  ),
+                ),
+                Text(
+                  AppString.createDescription,
+                  style: GoogleFonts.poppins(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w400,
+                    letterSpacing: 0.5,
+                    color: AppColors.description,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                CustomTextField(
+                  label: AppString.firstname,
+                  hint: AppString.nameHint,
+                  controller: controller.firstNameController,
+                ),
+                const SizedBox(height: 20),
+                CustomTextField(
+                  label: AppString.lastName,
+                  hint: AppString.lastnameHint,
+                  controller: controller.lastNameController,
+                ),
+                const SizedBox(height: 20),
+                CustomTextField(
+                  label: AppString.email,
+                  hint: AppString.emailHint,
+                  controller: controller.emailController,
+                ),
+                const SizedBox(height: 20),
+                CustomTextField(
+                  label: AppString.address,
+                  hint: AppString.addressHint,
+                  controller: controller.addressController,
+                ),
+                const SizedBox(height: 20),
+                CustomTextField(
+                  label: AppString.password,
+                  hint: AppString.passwordHint,
+                  controller: controller.passwordController,
+                ),
+                const SizedBox(height: 20),
+                CustomTextField(
+                  label: AppString.confirmPassword,
+                  hint: AppString.passwordHint,
+                  controller: controller.confirmPasswordController,
+                ),
+                const SizedBox(height: 10),
                 SignUpCheckBox(),
-      
-                SizedBox(height: 20,),
-      
-                DividerWidget(),
-      
-                SizedBox(height: 10,),
-      
-                AlreadyAccount(),
-      
-                SizedBox(height: 20,),
-      
-                CustomButton(text: "Continue", onPressed: (){})
-      
-      
-      
-      
-      
-      
-      
+                const SizedBox(height: 20),
+                const DividerWidget(),
+                const SizedBox(height: 10),
+                const AlreadyAccount(),
+                const SizedBox(height: 20),
+                Obx(() => CustomButton(
+                    text: controller.isLoading.value ? 'Please wait...' : 'Continue',
+                    onPressed: () {
+                      if (!controller.isLoading.value) {
+                        controller.submitSignup();
+                      }
+                    },
+                  ),
+                ),
               ],
             ),
           ),

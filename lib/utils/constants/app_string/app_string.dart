@@ -83,6 +83,13 @@ class AppString {
 
 
 
+// ========= Task ========= //
+static const String taskTitle = "e.g. Design Landing Page Header";
+
+
+
+
+
 
 
 

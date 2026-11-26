@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:task_04/features/account/account_view/account_view.dart';
+import 'package:task_04/features/add_task_view/add_task_view.dart';
 import 'package:task_04/features/auth/login/login_view/login_view.dart';
 import 'package:task_04/features/auth/set_new_password/set_new_pass_view/set_new_pass_view.dart';
 import 'package:task_04/features/auth/signup/signup_view/signup_view.dart';
 import 'package:task_04/features/auth/verification_code/verification_code.dart';
 import 'package:task_04/features/auth/verify_email/verify_email_view/verify_email_view.dart';
 import 'package:task_04/features/main_view/main_view.dart';
+import 'package:task_04/features/profile/edit_profile/edit_profile_view/edit_profile_view.dart';
+import 'package:task_04/features/profile/my_profile/my_profile_view/my_profile_view.dart';
+import 'package:task_04/features/profile/profile_view/profile_view.dart';
 import 'package:task_04/features/splash/splash_view/splash_view.dart';
 
+import 'features/edit_task/edit_task_view/edit_task_view.dart';
 import 'features/onboarding/onboarding_view/onboarding_view1.dart';
 import 'features/onboarding/onboarding_view/onboarding_view2.dart';
 import 'features/onboarding/onboarding_view/onboarding_view3.dart';
+import 'features/task_details/task_details_view.dart';
 
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await GetStorage.init();
   runApp( Task04());
 }
 
@@ -30,7 +41,7 @@ class Task04 extends StatelessWidget {
 
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: MainView(),
+      home: LoginView(),
     );
   }
 }
